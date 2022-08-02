@@ -3,9 +3,15 @@ import os
 from functions import*
 from pynput import mouse
 import time
+import requests
 
 # I select the image i want to draw 
-img = Image.open("Image3.jpg")
+image_url = "https://cdn.futura-sciences.com/buildsv6/images/wide1920/6/5/2/652a7adb1b_98148_01-intro-773.jpg"
+img_data = requests.get(image_url).content
+with open('Image.jpg', 'wb') as handler:
+    handler.write(img_data)
+img = Image.open("Image.jpg")
+img.show()
 
 # I ask the user the top left and bootom right of the final image
 c = 0
