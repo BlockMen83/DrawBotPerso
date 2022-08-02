@@ -1,0 +1,6 @@
+- the image should be in the center of the blank space
+- find a way to make the horizontal picture work 
+- be able to choose the photo after some result from internet
+- ask for the resolution of the screen(add a custom one)
+- be able to choose the dimension of the blank space by clicking a button
+- make the edges smoother

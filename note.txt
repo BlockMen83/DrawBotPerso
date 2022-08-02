@@ -1,0 +1,27 @@
+colour :
+- white = 255,255,255
+- black = 0, 0, 0
+- light grey = 193, 193, 193
+- dark grey = 76, 76, 76
+- red = 239, 19, 11
+- dark red = 116, 11 , 7
+- orange = 255, 113, 0
+- dark orange = 194, 56, 0
+- yellow = 255, 228, 0
+- dark yellow = 232, 162, 0
+- green = 0, 204, 0
+- dark green = 0, 85, 16
+- cyan = 0, 178, 255
+- dark cyan = 0, 86, 158
+- blue = 35, 31, 211
+- dark blue = 14, 8, 101
+- purple = 163, 0, 186
+- dark purple = 85, 0, 105
+- pink = 211,124, 170
+- dark pink = 167, 85, 116
+- brown = 160, 82, 45
+- dark brown = 99, 48, 13
+
+info : 
+- one click = 4*4 pixels square
+- blank space = 1003*752 pixels
