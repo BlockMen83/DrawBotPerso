@@ -1,9 +1,14 @@
-import requests
+from pynput import mouse,keyboard
+import clipboard
 
-image_url = "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/Image_created_with_a_mobile_phone.png/1200px-Image_created_with_a_mobile_phone.png"
-img_data = requests.get(image_url).content
-with open('image.jpg', 'wb') as handler:
-    handler.write(img_data)
+def on_click(x, y, button, pressed):
+    if button == mouse.Button.right and pressed :
+        print(str(x)+","+str(y))
+        clipboard.copy(str(x)+","+str(y))
+
+with mouse.Listener(
+        on_click = on_click) as listener:
+    listener.join()
 
 
 
