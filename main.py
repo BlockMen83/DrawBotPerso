@@ -7,7 +7,7 @@ import time
 import requests
 
 # I select the image i want to draw 
-image_url = "https://cdn.futura-sciences.com/buildsv6/images/wide1920/6/5/2/652a7adb1b_98148_01-intro-773.jpg"
+image_url = "https://upload.wikimedia.org/wikipedia/commons/9/9a/Gull_portrait_ca_usa.jpg"
 img_data = requests.get(image_url).content
 with open('Image.jpg', 'wb') as handler:
     handler.write(img_data)
@@ -18,7 +18,7 @@ img.show()
 c = 0
 point1 = 0
 point2 = 0
-
+print ("Enter the two points")
 def on_click(x, y, button, pressed):
     global c
     global point1
@@ -28,32 +28,47 @@ def on_click(x, y, button, pressed):
         if c == 1 :
             point1 = x,y
         elif c == 2 :
-            point2 ==x,y 
-
-        else : 
-            return False
-
+            point2 = x,y
+            return False 
 with mouse.Listener(
         on_click = on_click) as listener:
     listener.join()
-
+print((point1),(point2))
 width = abs(point1[0]-point2[0])
 height = abs(point1[1]-point2[1])
 
 # I resize the image so that she can fit into the blank space
-if img.width > width :                       
-    img.thumbnail((width,width))
-if img.height > height :
-    img.thumbnail((height,height))
+if img.width > width :
+    taille = width                       
+    img.thumbnail((int(width/6),int(width/6)))
+
+elif img.height > height :
+    taille = height
+    img.thumbnail((int(height/6),int(height/6)))
+
 img.save("Image-resize.jpg", "JPEG")
 imgr = Image.open("Image-resize.jpg")
 imgr.show()
 
-# I change each pixel colour to the closest one from the game pallet
+# I change each pixel colour to the closest one from the game pallet and I control the mouse to draw the image
 mouse = Controller()
-
+pointx = point1[0]
+pointy = point1[1]
 for x in range(imgr.width) :
     for y in range(imgr.height) :
         r, g, b = imgr.getpixel((x, y))
         c = coordinates(r,g,b)
+        mouse.position = (c)
+        mouse.press(Button.left)
+        mouse.release(Button.left)
+        time.sleep(0.01)
+        mouse.position = (pointx,pointy)
+        mouse.press(Button.left)
+        mouse.release(Button.left)
+        pointx += 6
+        if pointx >= taille+point1[0] :
+            pointx = point1[0]
+            pointy += 6
+
+
 
