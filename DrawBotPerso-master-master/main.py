@@ -12,7 +12,6 @@ img_data = requests.get(image_url).content
 with open('Image.jpg', 'wb') as handler:
     handler.write(img_data)
 img = Image.open("Image.jpg")
-img.show()
 
 # I ask the user the top left and bootom right of the final image
 c = 0
@@ -37,25 +36,27 @@ print((point1),(point2))
 width = abs(point1[0]-point2[0])
 height = abs(point1[1]-point2[1])
 
+
 # I resize the image so that she can fit into the blank space
+taille_carré_pixel = 5
 if img.width > width :
     taille = width                       
-    img.thumbnail((int(width/4),int(width/4)))
+    img.thumbnail((int(width/taille_carré_pixel),int(width/taille_carré_pixel)))
 
 elif img.height > height :
     taille = height
-    img.thumbnail((int(height/4),int(height/4)))
+    img.thumbnail((int(height/taille_carré_pixel),int(height/taille_carré_pixel)))
 
 img.save("Image-resize.jpg", "JPEG")
 imgr = Image.open("Image-resize.jpg")
-imgr.show()
 
 # I change each pixel colour to the closest one from the game pallet and I control the mouse to draw the image
+time.sleep(0.1)
 mouse = Controller()
 pointx = point1[0]
 pointy = point1[1]
-for x in range(imgr.width) :
-    for y in range(imgr.height) :
+for y in range(imgr.height) :
+    for x in range(imgr.width) :
         r, g, b = imgr.getpixel((x, y))
         c = coordinates(r,g,b)
         mouse.position = (c)
@@ -65,11 +66,10 @@ for x in range(imgr.width) :
         mouse.position = (pointx,pointy)
         mouse.press(Button.left)
         mouse.release(Button.left)
-        pointx += 4
+        pointx += taille_carré_pixel
         if pointx >= taille+point1[0] :
             pointx = point1[0]
-            pointy += 4
-
+            pointy += taille_carré_pixel
 
 
 
