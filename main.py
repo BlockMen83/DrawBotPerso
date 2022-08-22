@@ -7,7 +7,7 @@ import time
 import requests
 
 # I select the image i want to draw 
-image_url = "https://upload.wikimedia.org/wikipedia/commons/9/9a/Gull_portrait_ca_usa.jpg"
+image_url = "https://i.ytimg.com/vi/BIKNYg5w6Xw/maxresdefault.jpg"
 img_data = requests.get(image_url).content
 with open('Image.jpg', 'wb') as handler:
     handler.write(img_data)
@@ -38,7 +38,7 @@ height = abs(point1[1]-point2[1])
 
 
 # I resize the image so that she can fit into the blank space
-taille_carré_pixel = 3
+taille_carré_pixel = 6
 if img.width > width :
     taille = width                       
     img.thumbnail((int(width/taille_carré_pixel),int(width/taille_carré_pixel)))
@@ -67,7 +67,7 @@ for y in range(imgr.height) :
         mouse.press(Button.left)
         mouse.release(Button.left)
         pointx += taille_carré_pixel
-        if pointx >= taille+point1[0] :
+        if pointx >= taille+point1[0]-1 :
             pointx = point1[0]
             pointy += taille_carré_pixel
 
