@@ -8,7 +8,7 @@ import requests
 
 
 # I select the image i want to draw 
-image_url = "https://img.favpng.com/1/18/0/kirby-canvas-curse-drawing-clip-art-image-nintendo-ds-png-favpng-xqf2C8kkUEwxq0aHwtkQgRR74.jpg"
+image_url = "https://img2.freepng.fr/20180410/hpw/kisspng-magic-8-ball-eight-ball-billiard-balls-clip-art-snooker-5acd274d73e3c9.2760218515233943814747.jpg"
 img_data = requests.get(image_url).content
 with open('Image.jpg', 'wb') as handler:
     handler.write(img_data)
