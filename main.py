@@ -50,7 +50,7 @@ img.save("Image-resize.jpg", "JPEG")
 imgr = Image.open("Image-resize.jpg")
 
 # I change each pixel colour to the closest one from the game pallet and I control the mouse to draw the image
-time.sleep(0.1)
+time.sleep(0.001)
 mouse = Controller()
 pointx = point1[0]
 pointy = point1[1]
