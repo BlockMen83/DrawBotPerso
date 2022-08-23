@@ -37,7 +37,6 @@ print((point1),(point2))
 width = abs(point1[0]-point2[0])
 height = abs(point1[1]-point2[1])
 
-
 # I resize the image so that she can fit into the blank space
 taille_carré_pixel = 3
 if img.width >= img.height :                   
