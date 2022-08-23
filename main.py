@@ -6,8 +6,9 @@ from pynput.mouse import Button, Controller
 import time
 import requests
 
+
 # I select the image i want to draw 
-image_url = "https://i.ytimg.com/vi/BIKNYg5w6Xw/maxresdefault.jpg"
+image_url = "https://img.favpng.com/1/18/0/kirby-canvas-curse-drawing-clip-art-image-nintendo-ds-png-favpng-xqf2C8kkUEwxq0aHwtkQgRR74.jpg"
 img_data = requests.get(image_url).content
 with open('Image.jpg', 'wb') as handler:
     handler.write(img_data)
@@ -38,15 +39,14 @@ height = abs(point1[1]-point2[1])
 
 
 # I resize the image so that she can fit into the blank space
-taille_carré_pixel = 6
-if img.width > width :
-    taille = width                       
+taille_carré_pixel = 3
+if img.width >= img.height :                   
     img.thumbnail((int(width/taille_carré_pixel),int(width/taille_carré_pixel)))
 
-elif img.height > height :
-    taille = height
+elif img.height > img.width :
     img.thumbnail((int(height/taille_carré_pixel),int(height/taille_carré_pixel)))
 
+img = img.convert("RGB")
 img.save("Image-resize.jpg", "JPEG")
 imgr = Image.open("Image-resize.jpg")
 
@@ -59,15 +59,16 @@ for y in range(imgr.height) :
     for x in range(imgr.width) :
         r, g, b = imgr.getpixel((x, y))
         c = coordinates(r,g,b)
-        mouse.position = (c)
-        mouse.press(Button.left)
-        mouse.release(Button.left)
-        time.sleep(0.01)
-        mouse.position = (pointx,pointy)
-        mouse.press(Button.left)
-        mouse.release(Button.left)
+        if c != "bozo" : 
+            mouse.position = (c)
+            mouse.press(Button.left)
+            mouse.release(Button.left)
+            time.sleep(0.001)
+            mouse.position = (pointx,pointy)
+            mouse.press(Button.left)
+            mouse.release(Button.left)
         pointx += taille_carré_pixel
-        if pointx >= taille+point1[0]-1 :
+        if pointx >= imgr.width*taille_carré_pixel + point1[0] :
             pointx = point1[0]
             pointy += taille_carré_pixel
 
