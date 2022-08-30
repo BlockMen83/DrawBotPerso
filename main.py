@@ -8,7 +8,7 @@ import requests
 
 
 # I select the image i want to draw 
-image_url = "https://img2.freepng.fr/20180410/hpw/kisspng-magic-8-ball-eight-ball-billiard-balls-clip-art-snooker-5acd274d73e3c9.2760218515233943814747.jpg"
+image_url = "https://www.how-to-draw-funny-cartoons.com/images/cartoon-bank-6.gif"
 img_data = requests.get(image_url).content
 with open('Image.jpg', 'wb') as handler:
     handler.write(img_data)
